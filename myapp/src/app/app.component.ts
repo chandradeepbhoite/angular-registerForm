@@ -8,7 +8,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 })
 export class AppComponent {
   title = 'chandradeep myapp';
-  integerRegex="/^\d+$/"
+  integerRegex= /^\d+$/;
   // emailRegex='^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'
   registerForm= new FormGroup({
     fname: new FormControl('',[Validators.required,Validators.maxLength(32),Validators.pattern("^[a-zA-Z]+$")]),
@@ -23,9 +23,15 @@ export class AppComponent {
       return this.registerForm.get(name)
   }
 
-  registerfn(){
+  registerfn(){ 
     console.log(this.registerForm.value)
-    alert("FORM IS SUBMITTED Successfully");
+    if (this.registerForm.valid) {
+      alert("FORM IS SUBMITTED Successfully");
+    }
+    else{
+      alert("form is not submitted")
+    }
+   
     this.registerForm.reset();
   }
 }
